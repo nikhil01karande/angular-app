@@ -47,6 +47,24 @@
     margin-top: 6px;
   }
 
+  .btn-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+  }
+
+  .small-spinner {
+    width: 18px !important;
+    height: 18px !important;
+  }
+
+  .small-spinner {
+    width: 25px !important;
+    height: 25px !important;
+  }
+
   .error-message {
     color: #d32f2f;
     font-size: 14px;

@@ -1,28 +1,21 @@
 import { Injectable } from '@angular/core';
 import { ComponentStore } from '@ngrx/component-store';
 import { HttpClient } from '@angular/common/http';
-import { switchMap, tap } from 'rxjs';
-
-export interface Item {
-  id: number;
-  name: string;
-  description: string;
-}
+import {tap} from 'rxjs';
 
 interface ItemsState {
-  items: Item[];
+  items: any[];
   loading: boolean;
   error: string | null;
 }
 
 @Injectable()
 export class ItemsStore extends ComponentStore<ItemsState> {
-
   constructor(private http: HttpClient) {
     super({
       items: [],
       loading: false,
-      error: null
+      error: null,
     });
   }
 
@@ -32,13 +25,13 @@ export class ItemsStore extends ComponentStore<ItemsState> {
 
   loadItems = this.effect<void>((trigger$) =>
     trigger$.pipe(
-      tap(() => this.patchState({ loading: true, error: null })),
-      switchMap(() =>
-        this.http.get<Item[]>("https://mocki.io/v1/55b2d75b-6b5b-4e67-a66e-2530f555d2eb")
-      ),
-      tap({
-        next: (items) => this.patchState({ items, loading: false }),
-        error: () => this.patchState({ error: 'Failed to load items', loading: false })
+      tap(() => {
+        this.patchState({ loading: true, error: null });
+        this.http.get<any[]>("https://jsonplaceholder.typicode.com/posts")
+          .subscribe({
+            next: items => this.patchState({ items, loading: false }),
+            error: () => this.patchState({ error: 'Failed to load items', loading: false })
+          });
       })
     )
   );

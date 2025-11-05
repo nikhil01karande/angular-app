@@ -12,12 +12,13 @@ const routes: Routes = [
   {
     path: 'dashboard',
     component: DashboardComponent,
-   
+    canActivate: [AuthGuard]
   },
   {
     path: 'items',
     loadChildren: () =>
       import('./features/items/items.module').then(m => m.ItemsModule),
+    canActivate: [AuthGuard]
   },
   {
     path: '',

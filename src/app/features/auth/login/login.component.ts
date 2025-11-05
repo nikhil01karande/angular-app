@@ -25,24 +25,23 @@ export class LoginComponent {
   }
 
   login() {
-    this.router.navigate(['/dashboard']);
-    // if (this.form.invalid) {
-    //   this.form.markAllAsTouched();
-    //   return;
-    // }
-
-    // this.loading = true;
-    // this.errorMessage = '';
-
-    // this.auth.login(this.form.value).subscribe({
-    //   next: (res: any) => {
-    //     this.auth.setSession(res.token, res.user.email);
-    //     this.loading = false;
-    //   },
-    //   error: () => {
-    //     this.errorMessage = 'Invalid email or password.';
-    //     this.loading = false;
-    //   }
-    // });
+    if (this.form.invalid) {
+      this.form.markAllAsTouched();
+      return;
+    }
+    this.loading = true;
+    this.errorMessage = '';
+    this.auth.login(this.form.value).subscribe({
+      next: (res: any) => {
+         const userEmail = this.form.value.email; 
+        this.auth.setSession(res.token, userEmail);
+        this.router.navigate(['/dashboard']);
+        this.loading = false;
+      },
+      error: () => {
+        this.errorMessage = 'Invalid email or password.';
+        this.loading = false;
+      }
+    });
   }
 }

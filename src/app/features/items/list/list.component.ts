@@ -13,9 +13,9 @@ export class ListComponent implements OnInit {
   loading$ = this.store.loading$;
   error$ = this.store.error$;
 
-  constructor(private store: ItemsStore) {}
+  constructor(private store: ItemsStore) { }
 
   ngOnInit() {
-    this.store.loadItems();
+    this.store.loadItems(); 
   }
 }

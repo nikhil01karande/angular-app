@@ -5,7 +5,7 @@
       <p>Please sign in to continue</p>
     </div>
 
-    <form [formGroup]="form" (ngSubmit)="login()">      
+    <form [formGroup]="form" (ngSubmit)="login()">
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Email</mat-label>
         <input matInput formControlName="email" type="email" placeholder="Enter your email">
@@ -22,9 +22,17 @@
         </mat-error>
       </mat-form-field>
 
-      <button mat-raised-button color="primary" class="login-btn">
-        Login
+
+      <button mat-raised-button color="primary" class="login-btn" [disabled]="loading || form.invalid">
+        <div class="btn-content">
+          <span>Login</span>
+          <mat-progress-spinner *ngIf="loading" mode="indeterminate" diameter="18" strokeWidth="2"
+            class="small-spinner">
+          </mat-progress-spinner>
+        </div>
+
       </button>
+
     </form>
   </mat-card>
 </div>

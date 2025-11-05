@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,12 +9,13 @@ import { Router } from '@angular/router';
 })
 
 export class DashboardComponent {
-  userEmail = localStorage.getItem('userEmail');  
-  constructor(public router: Router) {}
+  constructor(public router: Router,public auth:AuthService) {}
+  userEmail = this.auth.getUserEmail()
 
   logout() {
-    localStorage.clear();
+    this.auth.logout()
     this.router.navigate(['/login']);
+    
   }
 
   goToList() {
