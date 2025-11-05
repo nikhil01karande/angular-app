@@ -1,0 +1,18 @@
+<div class="items-container">
+  <h2>Items List</h2>
+  <div class="loading" *ngIf="loading$ | async">
+    <mat-progress-spinner mode="indeterminate" diameter="40">
+    </mat-progress-spinner>
+    <p>Loading items...</p>
+  </div>
+
+  <div class="error" *ngIf="error$ | async as err">
+    {{ err }}
+  </div>
+
+  <div class="item" *ngFor="let item of items$ | async">
+    <h3>{{ item.name }}</h3>
+    <p>{{ item.description }}</p>
+  </div>
+
+</div>

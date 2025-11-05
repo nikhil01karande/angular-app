@@ -1,0 +1,29 @@
+.items-container {
+  padding: 25px;
+  font-family: Arial, sans-serif;
+}
+
+.loading {
+  color: #2563eb;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.error {
+  color: #dc2626;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.item {
+  padding: 15px;
+  background: #f7f7f7;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  transition: 0.25s;
+}
+
+.item:hover {
+  background: #e6e6e6;
+  transform: translateY(-3px);
+}

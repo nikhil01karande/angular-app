@@ -1,0 +1,16 @@
+<div class="dashboard-container">
+  <div class="header">
+    <h2 class="title">Welcome, {{ userEmail }}</h2>
+  </div>
+
+  <div class="actions">
+    <button class="btn primary" (click)="goToList()">
+      View Items List
+    </button>
+
+    <button class="btn danger" (click)="logout()">
+       Logout
+    </button>
+  </div>
+
+</div>
